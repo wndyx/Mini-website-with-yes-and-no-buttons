@@ -39,11 +39,25 @@
             position: relative;
         }
 
+        /* GIF Styling */
+        .gif-container {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 30px;
+        }
+
         iframe {
-            width: 300px;
-            height: 300px;
-            border-radius: 10px;
+            width: 320px;
+            height: 320px;
+            border-radius: 15px;
             border: none;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);  /* Adds a shadow to the GIF */
+            transition: transform 0.3s ease;  /* Smooth hover effect */
+        }
+
+        /* Hover effect to enlarge GIF slightly */
+        iframe:hover {
+            transform: scale(1.05);
         }
     </style>
 </head>
@@ -51,8 +65,10 @@
 
     <h1>Will you say Yes?</h1>
 
-    <!-- Embed the GIF using iframe -->
-    <iframe src="https://giphy.com/embed/UuKevjxS75vbLjiHsV" allowFullScreen></iframe>
+    <!-- Center the GIF and add some styling -->
+    <div class="gif-container">
+        <iframe src="https://giphy.com/embed/UuKevjxS75vbLjiHsV" allowFullScreen></iframe>
+    </div>
     
     <div class="buttons">
         <button id="yes" onclick="alert('Yay! You said Yes!')">Yes</button>
@@ -62,8 +78,16 @@
     <script>
         function moveButton() {
             const noButton = document.getElementById("no");
-            const newLeft = Math.random() * (window.innerWidth - noButton.offsetWidth) + 'px';
-            const newTop = Math.random() * (window.innerHeight - noButton.offsetHeight) + 'px';
+            const buttonWidth = noButton.offsetWidth;
+            const buttonHeight = noButton.offsetHeight;
+
+            // Ensure the button stays within the viewport
+            const maxLeft = window.innerWidth - buttonWidth;
+            const maxTop = window.innerHeight - buttonHeight;
+
+            // Random new positions within the boundaries
+            const newLeft = Math.random() * maxLeft + 'px';
+            const newTop = Math.random() * maxTop + 'px';
 
             noButton.style.left = newLeft;
             noButton.style.top = newTop;
