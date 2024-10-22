@@ -5,41 +5,85 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Fun Yes or No Page</title>
     <style>
+        /* Add a gradient background for a cool visual effect */
         body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-            margin-top: 100px;
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #f78ca0, #f9748f, #fd868c, #fe9a8b);
+            background-size: 300% 300%;
+            animation: gradientBG 10s ease infinite;
+            overflow: hidden;  /* Prevent page scrolling */
+        }
+
+        /* Gradient animation effect */
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
         }
 
         h1 {
-            color: #333;
+            color: white;
+            font-size: 48px;
+            margin-bottom: 40px;
+            text-shadow: 2px 4px rgba(0, 0, 0, 0.3);
+            letter-spacing: 2px;
         }
 
         .buttons {
             margin-top: 50px;
+            display: flex;
+            justify-content: center;
         }
 
         button {
-            padding: 15px 30px;
-            font-size: 18px;
+            padding: 15px 40px;
+            font-size: 20px;
             cursor: pointer;
             border: none;
-            border-radius: 8px;
-            margin: 10px;
+            border-radius: 50px;
+            margin: 0 20px;
+            transition: all 0.3s ease;
+            box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Hover effects for buttons */
+        button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0px 12px 18px rgba(0, 0, 0, 0.2);
         }
 
         #yes {
-            background-color: #4CAF50;
+            background-color: #6DD5FA;
             color: white;
+            transition: all 0.4s ease;
+        }
+
+        #yes:hover {
+            background-color: #3498DB;
         }
 
         #no {
             background-color: #f44336;
             color: white;
-            position: relative;
+            position: absolute; /* Allow the "No" button to move */
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            transition: background-color 0.3s ease;
         }
 
-        /* GIF Styling */
+        #no:hover {
+            background-color: #e74c3c;
+        }
+
+        /* GIF container and styling */
         .gif-container {
             display: flex;
             justify-content: center;
@@ -49,23 +93,30 @@
         iframe {
             width: 320px;
             height: 320px;
-            border-radius: 15px;
+            border-radius: 20px;
             border: none;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);  /* Adds a shadow to the GIF */
-            transition: transform 0.3s ease;  /* Smooth hover effect */
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease;
         }
 
-        /* Hover effect to enlarge GIF slightly */
         iframe:hover {
             transform: scale(1.05);
         }
+
+        /* Footer styling */
+        footer {
+            margin-top: 40px;
+            color: white;
+            font-size: 14px;
+        }
+
     </style>
 </head>
 <body>
 
-    <h1>Will you say Yes?</h1>
+    <h1>Will You Say Yes?</h1>
 
-    <!-- Center the GIF and add some styling -->
+    <!-- Embed the GIF -->
     <div class="gif-container">
         <iframe src="https://giphy.com/embed/UuKevjxS75vbLjiHsV" allowFullScreen></iframe>
     </div>
@@ -74,6 +125,10 @@
         <button id="yes" onclick="alert('Yay! You said Yes!')">Yes</button>
         <button id="no" onmouseover="moveButton()">No</button>
     </div>
+
+    <footer>
+        <p>Made with ❤️ and fun!</p>
+    </footer>
 
     <script>
         function moveButton() {
@@ -93,5 +148,6 @@
             noButton.style.top = newTop;
         }
     </script>
+
 </body>
 </html>
