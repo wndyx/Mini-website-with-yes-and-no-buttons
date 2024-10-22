@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fun Sports Page</title>
+    <style>
+        /* Add a gradient background for a cool visual effect */
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #f78ca0, #f9748f, #fd868c, #fe9a8b);
+            background-size: 300% 300%;
+            animation: gradientBG 10s ease infinite;
+            overflow: hidden;  /* Prevent page scrolling */
+        }
+
+        /* Gradient animation effect */
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        h1 {
+            color: white;
+            font-size: 48px;
+            margin-bottom: 40px;
+            text-shadow: 2px 4px rgba(0, 0, 0, 0.3);
+            letter-spacing: 2px;
+        }
+
+        .buttons {
+            margin-top: 50px;
+            display: flex;
+            justify-content: center;
+        }
+
+        button {
+            padding: 15px 40px;
+            font-size: 20px;
+            cursor: pointer;
+            border: none;
+            border-radius: 50px;
+            margin: 0 20px;
+            transition: all 0.3s ease;
+            box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Hover effects for buttons */
+        button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0px 12px 18px rgba(0, 0, 0, 0.2);
+        }
+
+        #badminton {
+            background-color: #6DD5FA;
+            color: white;
+            transition: all 0.4s ease;
+        }
+
+        #badminton:hover {
+            background-color: #3498DB;
+        }
+
+        #tennis {
+            background-color: #f44336;
+            color: white;
+            position: absolute; /* Allow the "Tennis" button to move */
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            transition: background-color 0.3s ease;
+        }
+
+        #tennis:hover {
+            background-color: #e74c3c;
+        }
+
+        /* GIF container and styling */
+        .gif-container {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 30px;
+        }
+
+        iframe {
+            width: 320px;
+            height: 320px;
+            border-radius: 20px;
+            border: none;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease;
+            pointer-events: none; /* Disable clicks on the GIF */
+        }
+
+        iframe:hover {
+            transform: scale(1.05);
+        }
+
+        /* Footer styling */
+        footer {
+            margin-top: 40px;
+            color: white;
+            font-size: 14px;
+        }
+
+    </style>
+</head>
+<body>
+
+    <h1>Pick Your Sport!</h1>
+
+    <!-- Embed the GIF -->
+    <div class="gif-container">
+        <iframe id="gif" src="https://giphy.com/embed/UuKevjxS75vbLjiHsV" allowFullScreen></iframe>
+    </div>
+    
+    <div class="buttons">
+        <button id="badminton" onclick="alert('You chose Badminton!')">Badminton</button>
+        <button id="tennis" onmouseover="moveButton()">Tennis</button>
+    </div>
+
+    <footer>
+        <p>Made with ❤️ and fun!</p>
+    </footer>
+
+    <script>
+        function moveButton() {
+            const tennisButton = document.getElementById("tennis");
+            const gif = document.getElementById("gif");
+            const buttonWidth = tennisButton.offsetWidth;
+            const buttonHeight = tennisButton.offsetHeight;
+
+            // Get the GIF's bounding rectangle (position and size)
+            const gifRect = gif.getBoundingClientRect();
+
+            // Calculate the maximum boundaries within the viewport, avoiding the GIF
+            const maxLeft = window.innerWidth - buttonWidth;
+            const maxTop = window.innerHeight - buttonHeight;
+
+            // Ensure the "Tennis" button doesn't overlap with the GIF area
+            let newLeft, newTop;
+            do {
+                newLeft = Math.random() * maxLeft;
+                newTop = Math.random() * maxTop;
+            } while (
+                newLeft + buttonWidth > gifRect.left && newLeft < gifRect.right && // Horizontal overlap
+                newTop + buttonHeight > gifRect.top && newTop < gifRect.bottom   // Vertical overlap
+            );
+
+            tennisButton.style.left = newLeft + 'px';
+            tennisButton.style.top = newTop + 'px';
+        }
+    </script>
+
+</body>
+</html>
