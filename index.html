@@ -114,11 +114,11 @@
 </head>
 <body>
 
-    <h1>Badminton Someday?</h1>
+    <h1>Badminton?</h1>
 
     <!-- Embed the GIF -->
     <div class="gif-container">
-        <iframe src="https://giphy.com/embed/UuKevjxS75vbLjiHsV" allowFullScreen></iframe>
+        <iframe id="gif" src="https://giphy.com/embed/UuKevjxS75vbLjiHsV" allowFullScreen></iframe>
     </div>
     
     <div class="buttons">
@@ -127,25 +127,35 @@
     </div>
 
     <footer>
-        <p>hehe</p>
+        <p>HEHE</p>
     </footer>
 
     <script>
         function moveButton() {
             const noButton = document.getElementById("no");
+            const gif = document.getElementById("gif");
             const buttonWidth = noButton.offsetWidth;
             const buttonHeight = noButton.offsetHeight;
 
-            // Ensure the button stays within the viewport
+            // Get the GIF's bounding rectangle (position and size)
+            const gifRect = gif.getBoundingClientRect();
+
+            // Calculate the maximum boundaries within the viewport, avoiding the GIF
             const maxLeft = window.innerWidth - buttonWidth;
             const maxTop = window.innerHeight - buttonHeight;
 
-            // Random new positions within the boundaries
-            const newLeft = Math.random() * maxLeft + 'px';
-            const newTop = Math.random() * maxTop + 'px';
+            // Ensure the "No" button doesn't overlap with the GIF area
+            let newLeft, newTop;
+            do {
+                newLeft = Math.random() * maxLeft;
+                newTop = Math.random() * maxTop;
+            } while (
+                newLeft < gifRect.right && newLeft + buttonWidth > gifRect.left && // Check horizontal overlap
+                newTop < gifRect.bottom && newTop + buttonHeight > gifRect.top   // Check vertical overlap
+            );
 
-            noButton.style.left = newLeft;
-            noButton.style.top = newTop;
+            noButton.style.left = newLeft + 'px';
+            noButton.style.top = newTop + 'px';
         }
     </script>
 
