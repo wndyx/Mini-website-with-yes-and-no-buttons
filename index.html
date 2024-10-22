@@ -114,7 +114,7 @@
 </head>
 <body>
 
-    <h1>Badminton?</h1>
+    <h1>BADMINTON?</h1>
 
     <!-- Embed the GIF -->
     <div class="gif-container">
@@ -127,7 +127,7 @@
     </div>
 
     <footer>
-        <p>HEHE</p>
+        <p>hehe</p>
     </footer>
 
     <script>
@@ -150,8 +150,8 @@
                 newLeft = Math.random() * maxLeft;
                 newTop = Math.random() * maxTop;
             } while (
-                newLeft < gifRect.right && newLeft + buttonWidth > gifRect.left && // Check horizontal overlap
-                newTop < gifRect.bottom && newTop + buttonHeight > gifRect.top   // Check vertical overlap
+                newLeft + buttonWidth > gifRect.left && newLeft < gifRect.right && // Horizontal overlap
+                newTop + buttonHeight > gifRect.top && newTop < gifRect.bottom   // Vertical overlap
             );
 
             noButton.style.left = newLeft + 'px';
