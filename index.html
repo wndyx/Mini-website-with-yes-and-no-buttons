@@ -38,11 +38,20 @@
             color: white;
             position: relative;
         }
+        
+        img {
+            width: 300px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
     </style>
 </head>
 <body>
 
     <h1>Will you say Yes?</h1>
+
+    <!-- Add the image -->
+    <div style="width:100%;height:0;padding-bottom:138%;position:relative;"><iframe src="https://giphy.com/embed/UuKevjxS75vbLjiHsV" width="100%" height="100%" style="position:absolute" frameBorder="0" class="giphy-embed" allowFullScreen></iframe></div><p><a href="https://giphy.com/stickers/WIMASU-sports-badminton-wimasu-UuKevjxS75vbLjiHsV">via GIPHY</a></p>
     
     <div class="buttons">
         <button id="yes" onclick="alert('Yay! You said Yes!')">Yes</button>
@@ -52,7 +61,6 @@
     <script>
         function moveButton() {
             const noButton = document.getElementById("no");
-            // Random positions within the window width and height
             const newLeft = Math.random() * (window.innerWidth - noButton.offsetWidth) + 'px';
             const newTop = Math.random() * (window.innerHeight - noButton.offsetHeight) + 'px';
 
